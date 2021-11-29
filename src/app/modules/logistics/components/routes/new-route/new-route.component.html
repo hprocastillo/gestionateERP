@@ -1,1 +1,102 @@
-<p>new-route works!</p>
+<div class="card">
+  <div class="card-header">
+    <h5>Nueva ruta</h5>
+  </div>
+
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <form [formGroup]="newForm" (ngSubmit)="getSave(user, company)">
+
+          <!-- Description -->
+          <div class="form-group row">
+            <label for="txtDescription" class="col-md-4 col-form-label">DESCRIPCIÓN:</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="txtDescription" formControlName="description"
+                     placeholder="Ej: Nazca - Lima">
+            </div>
+          </div>
+
+          <!-- Origin City -->
+          <div class="form-group row">
+            <label for="cbOriginCity" class="col-md-4 col-form-label">CIUDAD ORIGEN:</label>
+            <div class="col-md-8">
+              <select class="form-control" id="cbOriginCity" formControlName="originCity">
+                <option value="" selected>SELECCIONAR</option>
+                <option *ngFor="let city of listCities" value="{{city.id}}">{{city.name}}</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Origin Address -->
+          <div class="form-group row">
+            <label for="txtOriginAddress" class="col-md-4 col-form-label">DIRECCIÓN ORIGEN:</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="txtOriginAddress" formControlName="originAddress"
+                     placeholder="Ej: Av. Argentina 3201 - Callao">
+            </div>
+          </div>
+
+          <!-- Origin Location -->
+          <div class="form-group row">
+            <label for="txtOriginLocation" class="col-md-4 col-form-label">UBICACIÓN ORIGEN:</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="txtOriginLocation" formControlName="originLocation"
+                     placeholder="Ej: Av. Argentina 3201 - Callao">
+            </div>
+          </div>
+
+          <!-- Destination City -->
+          <div class="form-group row">
+            <label for="cbDestinationCity" class="col-md-4 col-form-label">CIUDAD DESTINO:</label>
+            <div class="col-md-8">
+              <select class="form-control" id="cbDestinationCity" formControlName="destinationCity">
+                <option value="" selected>SELECCIONAR</option>
+                <option *ngFor="let city of listCities" value="{{city.id}}">{{city.name}}</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Destination Address -->
+          <div class="form-group row">
+            <label for="txtDestinationAddress" class="col-md-4 col-form-label">DIRECCIÓN DESTINO:</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="txtDestinationAddress" formControlName="destinationAddress"
+                     placeholder="Ej: Av. Argentina 3201 - Callao">
+            </div>
+          </div>
+
+          <!-- Destination Location -->
+          <div class="form-group row">
+            <label for="txtDestinationLocation" class="col-md-4 col-form-label">UBICACIÓN DESTINO:</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="txtDestinationLocation" formControlName="destinationLocation"
+                     placeholder="Ej: Av. Argentina 3201 - Callao">
+            </div>
+          </div>
+
+          <!-- Time of Arrival -->
+          <div class="form-group row">
+            <label for="txtTimeOfArrival" class="col-md-4 col-form-label">TIEMPO LLEGADA:</label>
+            <div class="col-md-8">
+              <input type="number" class="form-control" id="txtTimeOfArrival" formControlName="timeOfArrival"
+                     placeholder="Ej: 180">
+              <p class="text-muted m-0 p-0"><small>Ingrese el tiempo de llegada en horas.</small></p>
+              <p class="text-muted m-0 p-0"><small>(Ej: 50 Hrs.)</small></p>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-4">
+              <button type="reset" class="btn btn-danger btn-block" (click)="getCancel()">CANCELAR</button>
+            </div>
+            <div class="col-md-4">
+              <button type="submit" class="btn btn-primary btn-block">GUARDAR</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

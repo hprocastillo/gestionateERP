@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {AuthService} from "../../modules/auth/services/auth.service";
+import {Component} from '@angular/core';
+import {AuthService} from "../../../auth/services/auth.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -16,9 +16,8 @@ export class DashboardNavbarComponent {
   async logout() {
     try {
       await this.authSvc.logout();
-      await this.router.navigate(['/auth/login']);
+      await this.router.navigate(['auth']);
       this.collapsed = true;
-      console.log('You are logout');
     } catch (error) {
       console.log(error);
     }

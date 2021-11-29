@@ -1,1 +1,46 @@
-<p>indicators-by-vehicle-daily works!</p>
+<div class="table-responsive">
+  <table class="table table-hover table-bordered text-center" id="exportExcel">
+    <thead>
+    <tr>
+      <th colspan="2">UNIDADES DE TRANSPORTE</th>
+      <th colspan="4">INDICADORES</th>
+    </tr>
+    <tr class="text-nowrap">
+      <th>PLACA</th>
+      <th>VEHÍCULO</th>
+      <th>KM. RECORRIDOS</th>
+      <th>HH EN RUTA</th>
+      <th>IPERC</th>
+      <th>CHECKLIST</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="text-nowrap" *ngFor="let trip of listTrips">
+      <td>
+        <app-vehicle-by-id [vehicleId]="trip.vehicleId" [field]="'BADGE'"></app-vehicle-by-id>
+      </td>
+      <td>
+        <app-vehicle-by-id [vehicleId]="trip.vehicleId" [field]="'DESCRIPTION'"></app-vehicle-by-id>
+      </td>
+      <td>{{trip.traveledMileage}} Km.</td>
+      <td>{{trip.timeOnRoute}} Hrs.</td>
+      <td>--</td>
+      <td>1</td>
+    </tr>
+
+    </tbody>
+    <thead>
+    <tr>
+      <th colspan="2"></th>
+      <th colspan="4">TOTALES</th>
+    </tr>
+    </thead>
+    <tr>
+      <td colspan="2"></td>
+      <td>{{ totalMileage }} Km.</td>
+      <td>{{ totalTimeOnRoute }} Hrs.</td>
+      <td>--</td>
+      <td>{{listTrips.length}}</td>
+    </tr>
+  </table>
+</div>

@@ -1,1 +1,93 @@
-<p>employees works!</p>
+<ng-container *ngIf="authSvc.user$ | async as user">
+  <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+
+    <!------------- EMPLOYEES ------------->
+    <li [ngbNavItem]="1">
+      <a ngbNavLink>EMPLEADOS</a>
+      <ng-template ngbNavContent>
+
+        <!-- LIST EMPLOYEES -->
+        <ng-container *ngIf="pageListEmployees === true">
+          <ng-container *ngFor="let company of listCompanies">
+            <app-list-employees
+              [user]="user"
+              [company]="company"
+              (edit)="getEditEmployee($event)"
+              (add)="showNewEmployee()">
+            </app-list-employees>
+          </ng-container>
+        </ng-container>
+
+        <!-- NEW EMPLOYEE -->
+        <ng-container *ngIf="pageNewEmployee === true">
+          <ng-container *ngFor="let company of listCompanies">
+            <app-new-employee
+              [user]="user"
+              [company]="company"
+              (cancel)="showListEmployees()">
+            </app-new-employee>
+          </ng-container>
+        </ng-container>
+
+        <!-- EDIT EMPLOYEE -->
+        <ng-container *ngIf="pageEditEmployee === true">
+          <ng-container *ngFor="let company of listCompanies">
+            <app-edit-employee
+              [user]="user"
+              [company]="company"
+              [employeeId]="editEmployee"
+              (cancel)="showListEmployees()">
+            </app-edit-employee>
+          </ng-container>
+        </ng-container>
+
+      </ng-template>
+    </li>
+
+    <!------------- EMPLOYEES TYPES -------------->
+    <li [ngbNavItem]="2">
+      <a ngbNavLink>TIPOS DE EMPLEADO</a>
+      <ng-template ngbNavContent>
+
+        <!-- LIST EMPLOYEES TYPE -->
+        <ng-container *ngIf="pageListEmployeesTypes === true">
+          <ng-container *ngFor="let company of listCompanies">
+            <app-list-employees-type
+              [user]="user"
+              [company]="company"
+              (edit)="getEditEmployeeTypes($event)"
+              (add)="showNewEmployeeTypes()">
+            </app-list-employees-type>
+          </ng-container>
+        </ng-container>
+
+        <!-- EDIT EMPLOYEE TYPES -->
+        <ng-container *ngIf="pageEditEmployeeTypes === true">
+          <ng-container *ngFor="let company of listCompanies">
+            <app-edit-employee-type
+              [user]="user"
+              [company]="company"
+              [employeeTypeId]="editEmployeeType"
+              (cancel)="showListEmployeesTypes()">
+            </app-edit-employee-type>
+          </ng-container>
+        </ng-container>
+
+        <!-- NEW EMPLOYEES TYPES -->
+        <ng-container *ngIf="pageNewEmployeeTypes === true">
+          <ng-container *ngFor="let company of listCompanies">
+            <app-new-employee-type
+              [user]="user"
+              [company]="company"
+              (cancel)="showListEmployeesTypes()">
+            </app-new-employee-type>
+          </ng-container>
+        </ng-container>
+
+      </ng-template>
+    </li>
+  </ul>
+
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+</ng-container>

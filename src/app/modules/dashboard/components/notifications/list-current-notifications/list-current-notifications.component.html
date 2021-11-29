@@ -1,1 +1,29 @@
-<p>list-current-notifications works!</p>
+<div class="card">
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+        <tr class="text-nowrap">
+          <th scope="col"></th>
+          <th scope="col">NOMBRE</th>
+          <th scope="col">CORREO ELECTRÓNICO</th>
+          <th scope="col">MENSAJE</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="text-nowrap" *ngFor="let request of listRequests | slice: (page - 1) * pageSize:page * pageSize">
+          <td>
+            <button class="btn btn-danger btn-sm mr-2" (click)="reject(request, user)">Rechazar</button>
+            <button class="btn btn-success btn-sm" (click)="agree(request, user, company)">Aceptar</button>
+          </td>
+          <td>{{request.userDisplayName}}</td>
+          <td>{{request.userEmail}}</td>
+          <td>{{request.message}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <ngb-pagination [collectionSize]="listRequests.length" [(page)]="page" [pageSize]="pageSize"></ngb-pagination>
+  </div>
+</div>

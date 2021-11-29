@@ -1,1 +1,43 @@
-<p>notifications works!</p>
+<ng-container *ngIf="authSvc.user$ | async as user">
+  <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+
+    <!------------- CURRENT NOTIFICATIONS ------------->
+    <li [ngbNavItem]="1">
+      <a ngbNavLink>NOTIFICACIONES</a>
+      <ng-template ngbNavContent>
+
+        <!-- LIST CURRENT NOTIFICATIONS -->
+        <ng-container *ngIf="pageCurrentNotifications === true">
+          <ng-container *ngFor="let company of listCompanies">
+            <app-list-current-notifications
+              [user]="user"
+              [company]="company">
+            </app-list-current-notifications>
+          </ng-container>
+        </ng-container>
+
+      </ng-template>
+    </li>
+
+    <!------------- HISTORICAL NOTIFICATIONS -------------->
+    <li [ngbNavItem]="2">
+      <a ngbNavLink>HISTORIAL</a>
+      <ng-template ngbNavContent>
+
+        <!-- LIST HISTORICAL NOTIFICATIONS -->
+        <ng-container *ngIf="pageHistoricalNotifications === true">
+          <ng-container *ngFor="let company of listCompanies">
+            <app-list-historical-notifications
+              [user]="user"
+              [company]="company">
+            </app-list-historical-notifications>
+          </ng-container>
+        </ng-container>
+
+      </ng-template>
+    </li>
+  </ul>
+
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+</ng-container>

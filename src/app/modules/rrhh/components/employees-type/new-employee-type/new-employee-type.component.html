@@ -1,1 +1,61 @@
-<p>new-employee-type works!</p>
+<div class="card">
+  <div class="card-header">
+    <h5>Nuevo Tipo de empleado</h5>
+  </div>
+
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <form [formGroup]="newForm" (ngSubmit)="getSave(user, company)">
+
+          <!-- DESCRIPTION -->
+          <div class="form-group row">
+            <label class="col-md-5 col-form-label" for="txtDescription">DESCRIPCIÓN:</label>
+            <div class="col-md-7">
+              <input type="text" id="txtDescription" class="form-control" formControlName="description">
+            </div>
+          </div>
+
+          <h5>PERMISOS:</h5>
+          <br>
+
+          <div class="form-check">
+            <input class="form-check-input" formControlName="securityModule" id="securityCheck" type="checkbox" value="">
+            <label class="form-check-label" for="securityCheck">
+              MODULO DE SEGURIDAD
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" formControlName="employeeModule" id="employeeCheck" type="checkbox" value="">
+            <label class="form-check-label" for="employeeCheck">
+              MODULO DE RR.HH
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" formControlName="logisticsModule" id="logisticsCheck" type="checkbox" value="">
+            <label class="form-check-label" for="logisticsCheck">
+              MODULO DE LOGÍSTICA
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" formControlName="configModule" id="configCheck" type="checkbox" value="">
+            <label class="form-check-label" for="configCheck">
+              MODULO DE CONFIGURACIÓN
+            </label>
+          </div>
+          <br>
+
+          <div class="form-group row">
+            <div class="col-md-4">
+              <button type="reset" (click)="getCancel()" class="btn btn-danger btn-block">CANCELAR</button>
+            </div>
+            <div class="col-md-4">
+              <button type="submit" class="btn btn-primary btn-block">GUARDAR</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

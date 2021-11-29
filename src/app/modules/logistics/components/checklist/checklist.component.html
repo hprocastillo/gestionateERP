@@ -1,1 +1,156 @@
-<p>checklist works!</p>
+<ng-container *ngIf="authSvc.user$ | async as user">
+
+  <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+
+    <!------------- CHECKLIST ------------->
+    <li [ngbNavItem]="1">
+      <a ngbNavLink>CHECKLIST</a>
+      <ng-template ngbNavContent>
+
+        <!-- LIST CHECKLIST -->
+        <ng-container *ngIf="listPageChecklist === true">
+          <ng-container *ngFor="let company of listCompanies">
+            <app-list-checklist
+              [user]="user"
+              [company]="company"
+              (add)="showNewPageChecklist()"
+              (edit)="getEditChecklist($event)">
+            </app-list-checklist>
+          </ng-container>
+        </ng-container>
+
+        <!-- NEW CHECKLIST -->
+        <ng-container *ngIf="newPageChecklist === true">
+          <ng-container *ngFor="let company of listCompanies">
+            <app-new-checklist
+              [user]="user"
+              [company]="company"
+              (cancel)="showListPageChecklist()">
+            </app-new-checklist>
+          </ng-container>
+        </ng-container>
+        <!-- EDIT CHECKLIST -->
+        <ng-container *ngIf="editPageChecklist === true">
+          <ng-container *ngFor="let company of listCompanies">
+            <app-edit-checklist
+              [user]="user"
+              [editChecklist]="editChecklist"
+              (cancel)="showListPageChecklist()">
+            </app-edit-checklist>
+          </ng-container>
+        </ng-container>
+      </ng-template>
+    </li>
+
+    <!------------- QUESTIONS -------------->
+    <li [ngbNavItem]="2">
+      <a ngbNavLink>PREGUNTAS</a>
+      <ng-template ngbNavContent>
+        <!-- LIST QUESTIONS -->
+        <ng-container *ngIf="listPageQuestion === true">
+          <ng-container *ngFor="let company of listCompanies">
+            <app-list-question
+              [user]="user"
+              [company]="company"
+              (add)="showNewPageQuestion()"
+              (edit)="getEditQuestion($event)">
+            </app-list-question>
+          </ng-container>
+        </ng-container>
+        <!-- NEW QUESTION -->
+        <ng-container *ngIf="newPageQuestion === true">
+          <ng-container *ngFor="let company of listCompanies">
+            <app-new-question
+              [user]="user"
+              [company]="company"
+              (cancel)="showListPageQuestion()">
+            </app-new-question>
+          </ng-container>
+        </ng-container>
+        <!-- EDIT QUESTION -->
+        <ng-container *ngIf="editPageQuestion === true">
+          <ng-container *ngFor="let company of listCompanies">
+            <app-edit-question
+              [user]="user"
+              [company]="company"
+              [editQuestion]="editQuestion"
+              (cancel)="showListPageQuestion()">
+            </app-edit-question>
+          </ng-container>
+        </ng-container>
+      </ng-template>
+    </li>
+    <!------------- CATEGORIES -------------->
+    <li [ngbNavItem]="3">
+      <a ngbNavLink>CATEGORÍAS</a>
+      <ng-template ngbNavContent>
+        <!-- LIST CATEGORIES -->
+        <ng-container *ngIf="listPageCategory === true">
+          <ng-container *ngFor="let company of listCompanies">
+            <app-list-categories
+              [user]="user"
+              [company]="company"
+              (add)="showNewPageCategory()"
+              (edit)="getEditCategory($event)"
+            ></app-list-categories>
+          </ng-container>
+        </ng-container>
+        <!-- NEW CATEGORY -->
+        <ng-container *ngIf="newPageCategory === true">
+          <ng-container *ngFor="let company of listCompanies">
+            <app-new-category
+              [user]="user"
+              [company]="company"
+              (cancel)="showListPageCategory()">
+            </app-new-category>
+          </ng-container>
+        </ng-container>
+
+        <!-- EDIT CATEGORY -->
+        <ng-container *ngIf="editPageCategory === true">
+          <ng-container *ngFor="let company of listCompanies">
+            <app-edit-category
+              [user]="user"
+              [editCategory]="editCategory"
+              (cancel)="showListPageCategory()">
+            </app-edit-category>
+          </ng-container>
+        </ng-container>
+      </ng-template>
+    </li>
+
+    <!------------- VERIFICATIONS USERS -------------->
+    <li [ngbNavItem]="4">
+      <a ngbNavLink>RESPUESTAS DE USUARIOS</a>
+      <ng-template ngbNavContent>
+
+        <!-- LIST VERIFICATIONS -->
+        <ng-container *ngIf="listPageVerifications === true">
+          <ng-container *ngFor="let company of listCompanies">
+            <app-list-verifications
+              [user]="user"
+              [company]="company"
+              (view)="getViewVerification($event)">
+            </app-list-verifications>
+          </ng-container>
+        </ng-container>
+
+        <!-- VIEW VERIFICATION -->
+        <ng-container *ngIf="viewPageVerification === true">
+          <ng-container *ngFor="let company of listCompanies">
+            <app-view-verification
+              [user]="user"
+              [company]="company"
+              [verificationId]="verificationId"
+              (back)="showListPageVerifications()">
+            </app-view-verification>
+          </ng-container>
+        </ng-container>
+
+      </ng-template>
+    </li>
+  </ul>
+
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+</ng-container>

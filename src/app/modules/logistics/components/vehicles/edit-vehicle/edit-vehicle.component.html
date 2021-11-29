@@ -1,1 +1,69 @@
-<p>edit-vehicle works!</p>
+<div class="card">
+  <div class="card-header">
+    <h5>Editar vehículo</h5>
+  </div>
+
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <form #editForm="ngForm" (ngSubmit)="getEdit(user, editVehicle)">
+
+          <!-- Employee Driver-->
+          <div class="form-group row">
+            <label for="cbEmployee" class="col-md-5 col-form-label">CONDUCTOR:</label>
+            <div class="col-md-7">
+              <select class="form-control" id="cbEmployee" [(ngModel)]="vehicle.employeeId" name="employeeId">
+                <option *ngFor="let employee of listEmployees" value="{{employee.id}}">{{employee.name}}</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Brand -->
+          <div class="form-group row">
+            <label for="cbBrand" class="col-md-5 col-form-label">MARCA VEHÍCULO:</label>
+            <div class="col-md-7">
+              <select class="form-control" id="cbBrand" [(ngModel)]="vehicle.brandId" name="brandId">
+                <option *ngFor="let brand of listBrands" value="{{brand.id}}">{{brand.brand}}</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- description -->
+          <div class="form-group row">
+            <label for="txtDescription" class="col-md-5 col-form-label">DESCRIPCIÓN:</label>
+            <div class="col-md-7">
+              <input type="text" class="form-control" id="txtDescription" [(ngModel)]="vehicle.description"
+                     name="description">
+            </div>
+          </div>
+
+          <!-- Badge -->
+          <div class="form-group row">
+            <label for="txtBadge" class="col-md-5 col-form-label">PLACA:</label>
+            <div class="col-md-7">
+              <input type="text" class="form-control" id="txtBadge" [(ngModel)]="vehicle.badge" name="badge">
+            </div>
+          </div>
+
+          <!-- Birthday -->
+          <div class="form-group row">
+            <label for="txtBirthDay" class="col-md-5 col-form-label">AÑO DE FABRICACIÓN:</label>
+            <div class="col-md-7">
+              <input type="text" class="form-control" id="txtBirthDay" [(ngModel)]="vehicle.birthDay" name="birthDay">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-4">
+              <button type="reset" class="btn btn-danger btn-block" (click)="getCancel()">CANCELAR</button>
+            </div>
+            <div class="col-md-4">
+              <button type="submit" class="btn btn-primary btn-block">GUARDAR</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

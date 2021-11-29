@@ -1,1 +1,103 @@
-<p>edit-route works!</p>
+<div class="card">
+  <div class="card-header">
+    <h5>Editar Ruta</h5>
+  </div>
+
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+
+        <form #editForm="ngForm" (ngSubmit)="getEdit(user, editRoute)">
+
+          <!-- Description -->
+          <div class="form-group row">
+            <label for="txtDescription" class="col-md-4 col-form-label">DESCRIPCIÓN:</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="txtDescription" [(ngModel)]="route.description"
+                     name="description">
+            </div>
+          </div>
+
+          <!-- Origin City -->
+          <div class="form-group row">
+            <label for="cbOriginCity" class="col-md-4 col-form-label">CIUDAD ORIGEN:</label>
+            <div class="col-md-8">
+              <select class="form-control" id="cbOriginCity" [(ngModel)]="route.originCity" name="originCity">
+                <option *ngFor="let city of listCities" value="{{city.id}}">{{city.name}}</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Origin Address -->
+          <div class="form-group row">
+            <label for="txtOriginAddress" class="col-md-4 col-form-label">DIRECCIÓN ORIGEN:</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="txtOriginAddress" [(ngModel)]="route.originAddress"
+                     name="originAddress"
+                     placeholder="Ej: Av. Argentina 3201 - Callao">
+            </div>
+          </div>
+
+          <!-- Origin Location -->
+          <div class="form-group row">
+            <label for="txtOriginLocation" class="col-md-4 col-form-label">UBICACIÓN ORIGEN:</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="txtOriginLocation" [(ngModel)]="route.originLocation"
+                     name="originLocation"
+                     placeholder="Ej: Av. Argentina 3201 - Callao">
+            </div>
+          </div>
+
+          <!-- Destination City -->
+          <div class="form-group row">
+            <label for="cbDestinationCity" class="col-md-4 col-form-label">CIUDAD DESTINO:</label>
+            <div class="col-md-8">
+              <select class="form-control" id="cbDestinationCity" [(ngModel)]="route.destinationCity"
+                      name="destinationCity">
+                <option *ngFor="let city of listCities" value="{{city.id}}">{{city.name}}</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Destination Address -->
+          <div class="form-group row">
+            <label for="txtDestinationAddress" class="col-md-4 col-form-label">DIRECCIÓN DESTINO:</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="txtDestinationAddress" [(ngModel)]="route.destinationAddress"
+                     name="destinationAddress" placeholder="Ej: Av. Argentina 3201 - Callao">
+            </div>
+          </div>
+
+          <!-- Destination Location -->
+          <div class="form-group row">
+            <label for="txtDestinationLocation" class="col-md-4 col-form-label">UBICACIÓN DESTINO:</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="txtDestinationLocation"
+                     [(ngModel)]="route.destinationLocation" name="destinationLocation"
+                     placeholder="Ej: Av. Argentina 3201 - Callao">
+            </div>
+          </div>
+
+          <!-- Time of Arrival -->
+          <div class="form-group row">
+            <label for="txtTimeOfArrival" class="col-md-4 col-form-label">TIEMPO LLEGADA (Hrs):</label>
+            <div class="col-md-8">
+              <input type="number" class="form-control" id="txtTimeOfArrival" [(ngModel)]="route.timeOfArrival"
+                     name="timeOfArrival">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-4">
+              <button type="reset" class="btn btn-danger btn-block" (click)="getCancel()">CANCELAR</button>
+            </div>
+            <div class="col-md-4">
+              <button type="submit" class="btn btn-primary btn-block">GUARDAR</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

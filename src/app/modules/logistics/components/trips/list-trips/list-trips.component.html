@@ -1,1 +1,53 @@
-<p>list-trips works!</p>
+<div class="card">
+  <div class="card-header d-flex justify-content-between">
+    <div class="title">
+    </div>
+    <div class="toolbar">
+      <app-toolbar
+        [btnAdd]="false"
+        [btnExport]="true"
+        (export)="getExport()"
+        [btnPrint]="true"
+        (print)="getPrint()"
+        [btnBack]="false"
+      ></app-toolbar>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-hover" id="exportExcel">
+        <thead>
+        <tr class="text-nowrap">
+          <th scope="col">RUTA</th>
+          <th scope="col">EMPLEADO</th>
+          <th scope="col">FECHA DE INICIO</th>
+          <th scope="col">FECHA DE FIN</th>
+          <th scope="col">TIEMPO EN RUTA</th>
+          <th scope="col">KILOMETRAJE INICIAL</th>
+          <th scope="col">KILOMETRAJE FINAL</th>
+          <th scope="col">OBSERVACIONES</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="text-nowrap" *ngFor="let trip of listTrips | slice: (page - 1) * pageSize:page * pageSize">
+          <td>
+            <app-route-by-id [routeId]="trip.routeId"></app-route-by-id>
+          </td>
+          <td>
+            <app-employee-by-id [employeeId]="trip.employeeId"></app-employee-by-id>
+          </td>
+          <td>{{trip.startDate.toDate() | date:'MMM d, y'}}</td>
+          <td>{{trip.endDate.toDate() | date:'MMM d, y'}}</td>
+          <td>{{trip.timeOnRoute}} Hrs.</td>
+          <td>{{trip.initialMileage}} Km.</td>
+          <td>{{trip.finalMileage}} Km.</td>
+          <td>{{trip.observations}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <ngb-pagination [collectionSize]="listTrips.length" [(page)]="page" [pageSize]="pageSize"></ngb-pagination>
+  </div>
+</div>

@@ -1,1 +1,48 @@
-<p>view-verification works!</p>
+<ng-container *ngIf="verification">
+  <ng-container *ngIf="checklist">
+
+    <div class="card">
+      <div class="card-header d-flex justify-content-between">
+        <div class="title">
+          <h5>{{checklist.description}}</h5>
+        </div>
+        <div class="toolbar">
+          <app-toolbar
+            [btnAdd]="false"
+            [btnExport]="false"
+            [btnPrint]="true"
+            (print)="getPrint()"
+            [btnBack]="true"
+            (back)="getBack()"
+          ></app-toolbar>
+        </div>
+
+      </div>
+      <div class="card-body">
+        <p class="text-muted">Empleado:
+          <span class="font-weight-bold">
+          <app-employee-by-id [employeeId]="verification.employeeId"></app-employee-by-id>
+          </span>
+        </p>
+
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let question of listQuestions">
+            <div class="question">
+              {{question.description}}
+            </div>
+            <div class="answer">
+              <app-answer
+                [questionId]="question.id"
+                [categoryId]="question.categoryId"
+                [employeeId]="verification.employeeId"
+                [checklistId]="verification.checklistId"
+                [companyId]="verification.companyId"
+              ></app-answer>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </ng-container>
+</ng-container>

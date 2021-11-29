@@ -1,1 +1,4 @@
-<p>dashboard-header works!</p>
+<h5>{{companyName || defaultName}}</h5>
+<br>
+<img [src]="[companyLogo || defaultLogo]" alt="">
+<p class="text-muted mt-3 text-center">{{companyType.description || defaultTypeBusiness}}</p>

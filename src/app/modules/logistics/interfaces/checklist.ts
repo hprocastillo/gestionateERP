@@ -5,11 +5,11 @@ export interface Checklist {
   id?: string;
   description: string;
   active: boolean;
-
   publish: boolean;
   publishAt: Timestamp;
 
   companyId: string; //from companies collection
+
   createdBy: string;
   createdAt: Timestamp;
   updatedBy: string;
@@ -19,9 +19,14 @@ export interface Checklist {
 export interface Verification {
   id?: string;
   active: boolean;
+  finished: boolean;
+  photoUrl: string;
+  observations:string;
+
   employeeId: string;// from employee collection
   checklistId: string;//from checklist collection
   companyId: string; //from companies collection
+
   createdBy: string;
   createdAt: Timestamp;
   updatedBy: string;

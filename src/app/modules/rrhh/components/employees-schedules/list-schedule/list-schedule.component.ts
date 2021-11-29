@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-list-schedule',
@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-schedule.component.scss']
 })
 export class ListScheduleComponent implements OnInit {
-
+  @Output() add = new EventEmitter<boolean>();
   constructor() { }
 
   ngOnInit(): void {
   }
-
+  goNew(event: any) {
+    this.add.emit(event.value);
+  }
 }

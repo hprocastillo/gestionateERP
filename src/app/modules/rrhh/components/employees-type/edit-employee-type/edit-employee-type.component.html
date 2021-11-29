@@ -1,1 +1,67 @@
-<p>edit-employee-type works!</p>
+<div class="card">
+  <div class="card-header">
+    <h5>Editar Tipo de empleado</h5>
+  </div>
+
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <form #editForm="ngForm" (ngSubmit)="getEdit()">
+
+          <!-- Description -->
+          <div class="form-group row">
+            <label class="col-md-5 col-form-label" for="txtName">DESCRIPCIÓN:</label>
+            <div class="col-md-7">
+              <input type="text" id="txtName" [(ngModel)]="employeeType.description" class="form-control" name="description">
+            </div>
+          </div>
+
+          <h5>PERMISOS:</h5>
+          <br>
+
+          <div class="form-check">
+            <input [(ngModel)]="employeeType.securityModule" class="form-check-input" id="securityCheck" name="securityModule"
+                   type="checkbox">
+            <label class="form-check-label" for="securityCheck">
+              MODULO DE SEGURIDAD
+            </label>
+          </div>
+          <div class="form-check">
+            <input [(ngModel)]="employeeType.employeeModule" class="form-check-input" id="employeeCheck"
+                   name="employeeModule"
+                   type="checkbox">
+            <label class="form-check-label" for="employeeCheck">
+              MODULO DE RR.HH
+            </label>
+          </div>
+          <div class="form-check">
+            <input [(ngModel)]="employeeType.logisticsModule" class="form-check-input" id="logisticsCheck"
+                   name="logisticsModule" type="checkbox">
+            <label class="form-check-label" for="logisticsCheck">
+              MODULO DE LOGÍSTICA
+            </label>
+          </div>
+          <div class="form-check">
+            <input [(ngModel)]="employeeType.configModule" class="form-check-input" id="configCheck"
+                   name="configModule"
+                   type="checkbox">
+            <label class="form-check-label" for="configCheck">
+              MODULO DE CONFIGURACIÓN
+            </label>
+          </div>
+          <br>
+
+          <div class="form-group row">
+            <div class="col-md-4">
+              <button type="reset" (click)="getCancel()" class="btn btn-danger btn-block">CANCELAR</button>
+            </div>
+            <div class="col-md-4">
+              <button type="submit" class="btn btn-primary btn-block">GUARDAR</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

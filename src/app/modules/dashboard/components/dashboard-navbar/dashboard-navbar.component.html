@@ -1,6 +1,6 @@
 <ng-container *ngIf="authSvc.user$ | async as user">
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <span class="navbar-brand">Gestionate</span>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <span class="navbar-brand" [routerLink]="['dashboard']">Gestionate</span>
     <button class="navbar-toggler" type="button" aria-controls="navbarContent" [attr.aria-expanded]="!collapsed"
             aria-label="Toggle navigation" (click)="collapsed = !collapsed">
       <span class="navbar-toggler-icon"></span>
@@ -8,11 +8,26 @@
 
     <div class="navbar-collapse" [class.collapse]="collapsed" id="navbarContent">
       <ul class="navbar-nav ml-auto">
+
+        <!-- Notifications -->
+        <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-right">
+          <a class="nav-link" role="button" [routerLink]="['dashboard/notifications', user.uid]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill"
+                 viewBox="0 0 16 16">
+              <path
+                d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+            </svg>
+            <app-notifications-badge [user]="user"></app-notifications-badge>
+          </a>
+        </li>
+
+        <!-- User Data -->
         <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-right">
           <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button">
             {{user.displayName}}
           </a>
           <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
+            <a ngbDropdownItem [routerLink]="['dashboard/config', user.uid]">Configuración y seguridad</a>
             <a ngbDropdownItem href="#" (click)="logout()">Cerrar sesión</a>
           </div>
         </li>

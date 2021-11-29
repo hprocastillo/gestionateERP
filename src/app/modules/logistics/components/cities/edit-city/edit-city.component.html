@@ -1,1 +1,41 @@
-<p>edit-city works!</p>
+<div class="card">
+  <div class="card-header">
+    <h5>Editar Ciudad</h5>
+  </div>
+
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+
+        <form #editForm="ngForm" (ngSubmit)="getEdit(user, editCity)">
+
+          <!-- Name -->
+          <div class="form-group row">
+            <label for="txtName" class="col-md-6 col-form-label">NOMBRE CIUDAD:</label>
+            <div class="col-md-6">
+              <input type="text" class="form-control" id="txtName" [(ngModel)]="city.name" name="name" required>
+            </div>
+          </div>
+
+          <!-- Coordinates -->
+          <div class="form-group row">
+            <label for="txtCoordinates" class="col-md-6 col-form-label">UBICACIÓN GOOGLE MAPS:</label>
+            <div class="col-md-6">
+              <input type="text" class="form-control" id="txtCoordinates" [(ngModel)]="city.coordinatesUrl" name="coordinatesUrl" required>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-4">
+              <button type="reset" class="btn btn-danger btn-block" (click)="getCancel()">CANCELAR</button>
+            </div>
+            <div class="col-md-4">
+              <button type="submit" class="btn btn-primary btn-block">GUARDAR</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,21 @@
-<p>employees-schedules works!</p>
+<ng-container *ngIf="authSvc.user$ | async as user">
+
+  <ng-container *ngIf="pageListSchedule === true">
+    <ng-container *ngFor="let company of listCompanies">
+      <app-list-schedule></app-list-schedule>
+    </ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="pageEditSchedule === true">
+    <ng-container *ngFor="let company of listCompanies">
+      <app-edit-schedule></app-edit-schedule>
+    </ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="pageNewSchedule === true">
+    <ng-container *ngFor="let company of listCompanies">
+      <app-new-schedule></app-new-schedule>
+    </ng-container>
+  </ng-container>
+
+</ng-container>

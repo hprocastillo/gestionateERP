@@ -1,1 +1,29 @@
-<p>dashboard-menu works!</p>
+<ngb-accordion [closeOthers]="true">
+  <ngb-panel id="static-1" title="INICIO">
+    <ng-template ngbPanelContent>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item p-1" [routerLink]="['dashboard/home', user.uid]">INICIO</li>
+        <li class="list-group-item p-1" [routerLink]="['dashboard/notifications', user.uid]">NOTIFICACIONES</li>
+      </ul>
+    </ng-template>
+  </ngb-panel>
+  <ngb-panel id="static-2" title="RR.HH">
+    <ng-template ngbPanelContent>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item p-1" [routerLink]="['rrhh/employees', user.uid]">EMPLEADOS</li>
+        <li class="list-group-item p-1" [routerLink]="['rrhh/employeesSchedule', user.uid]">HORARIOS</li>
+      </ul>
+    </ng-template>
+  </ngb-panel>
+  <ngb-panel id="static-3" title="LOGISTICA">
+    <ng-template ngbPanelContent>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item p-1" [routerLink]="['logistics/vehicles', user.uid]">VEHICULOS</li>
+        <li class="list-group-item p-1" [routerLink]="['logistics/routes', user.uid]">RUTAS</li>
+        <li class="list-group-item p-1" [routerLink]="['logistics/checklists', user.uid]">CHECKLIST</li>
+        <li class="list-group-item p-1" [routerLink]="['logistics/reports', user.uid]">REPORTES</li>
+      </ul>
+    </ng-template>
+  </ngb-panel>
+</ngb-accordion>
+

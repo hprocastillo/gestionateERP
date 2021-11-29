@@ -1,1 +1,28 @@
-<p>list-historical-notifications works!</p>
+<div class="card">
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+        <tr class="text-nowrap">
+          <th scope="col">ESTADO</th>
+          <th scope="col">FECHA</th>
+          <th scope="col">NOMBRE</th>
+          <th scope="col">CORREO ELECTRÓNICO</th>
+          <th scope="col">MENSAJE</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="text-nowrap" *ngFor="let request of listRequests | slice: (page - 1) * pageSize:page * pageSize">
+          <td>{{request.status}}</td>
+          <td>{{request.createdAt.toDate() | date:'MMM d, y'}}</td>
+          <td>{{request.userDisplayName}}</td>
+          <td>{{request.userEmail}}</td>
+          <td>{{request.message}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <ngb-pagination [collectionSize]="listRequests.length" [(page)]="page" [pageSize]="pageSize"></ngb-pagination>
+  </div>
+</div>

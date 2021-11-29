@@ -1,21 +1,49 @@
 <app-dashboard-navbar></app-dashboard-navbar>
-<div class="container-fluid">
-  <div class="row">
-    <!-- MENU COLUMN -->
-    <div class="col-md-3">
-      <!-- HEADER -->
-      <app-dashboard-header></app-dashboard-header>
+<div class="container-fluid mt-3">
 
-      <!-- MENU -->
-      <app-dashboard-menu></app-dashboard-menu>
-
+  <!-- IF COMPANY IS REGISTERED -->
+  <ng-container *ngIf="exist === true">
+    <div class="row">
+      <div class="col-lg-2">
+        <div class="card shadow p-2 bg-white rounded text-center">
+          <div class="card-body p-0">
+            <ng-container *ngFor="let company of listCompanies">
+              <!-- HEADER -->
+              <app-dashboard-header [company]="company"></app-dashboard-header>
+              <hr>
+              <!-- MENU -->
+              <app-dashboard-menu [user]="user"></app-dashboard-menu>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-10">
+        <div class="card shadow p-2 bg-white rounded">
+          <div class="card-body p-0">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </div>
     </div>
+  </ng-container>
 
-    <!-- MAIN COLUMN -->
-    <div class="col-md-9">
 
-      <router-outlet></router-outlet>
-
+  <!-- IF COMPANY IS NOT REGISTERED -->
+  <ng-container *ngIf="exist === false">
+    <div class="row">
+      <div class="col-lg-4 offset-lg-1">
+        <div class="jumbotron">
+          <h1 class="display-4">Gestionate!</h1>
+          <p class="lead">Con Gestionate puedes administrar tu empresa y todos sus recursos.</p>
+          <hr class="my-4">
+          <p>Para comenzar solo tienes que registrar tu empresa.</p>
+        </div>
+      </div>
+      <div class="col-lg-4 offset-lg-1">
+        <app-new-company [user]="user"></app-new-company>
+      </div>
     </div>
-  </div>
+  </ng-container>
+
+
 </div>

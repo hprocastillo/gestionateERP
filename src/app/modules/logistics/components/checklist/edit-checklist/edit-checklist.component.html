@@ -1,1 +1,31 @@
-<p>edit-checklist works!</p>
+<div class="card">
+  <div class="card-header">
+    <h5>Editar Checklist</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-lg-6">
+        <form #editForm="ngForm" (ngSubmit)="getEdit(user, editChecklist)">
+
+          <!-- Description -->
+          <div class="form-group row">
+            <label for="txtName" class="col-md-4 col-form-label">DESCRIPCIÓN:</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="txtName" [(ngModel)]="checklist.description"
+                     name="description" required>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-4">
+              <button type="reset" class="btn btn-danger btn-block" (click)="getCancel()">CANCELAR</button>
+            </div>
+            <div class="col-md-4">
+              <button type="submit" class="btn btn-primary btn-block">GUARDAR</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

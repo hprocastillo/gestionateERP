@@ -1,1 +1,93 @@
-<p>vehicles works!</p>
+<ng-container *ngIf="authSvc.user$ | async as user">
+  <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+
+    <!------------- VEHICLE ------------->
+    <li [ngbNavItem]="1">
+      <a ngbNavLink>VEHÍCULOS</a>
+      <ng-template ngbNavContent>
+
+        <!-- LIST VEHICLES -->
+        <ng-container *ngIf="pageListVehicles === true">
+          <ng-container *ngFor="let company of listCompanies">
+            <app-list-vehicles
+              [user]="user"
+              [company]="company"
+              (edit)="getEditVehicle($event)"
+              (add)="showNewVehicle()">
+            </app-list-vehicles>
+          </ng-container>
+        </ng-container>
+
+        <!-- NEW VEHICLE -->
+        <ng-container *ngIf="pageNewVehicle === true">
+          <ng-container *ngFor="let company of listCompanies">
+            <app-new-vehicle
+              [user]="user"
+              [company]="company"
+              (cancel)="showListVehicles()">
+            </app-new-vehicle>
+          </ng-container>
+        </ng-container>
+
+        <!-- EDIT ROUTE -->
+        <ng-container *ngIf="pageEditVehicle === true">
+          <ng-container *ngFor="let company of listCompanies">
+            <app-edit-vehicle
+              [user]="user"
+              [company]="company"
+              [editVehicle]="editVehicle"
+              (cancel)="showListVehicles()">
+            </app-edit-vehicle>
+          </ng-container>
+        </ng-container>
+
+      </ng-template>
+    </li>
+
+    <!------------- BRANDS -------------->
+    <li [ngbNavItem]="2">
+      <a ngbNavLink>MARCAS</a>
+      <ng-template ngbNavContent>
+
+        <!-- LIST BRANDS -->
+        <ng-container *ngIf="pageListBrands === true">
+          <ng-container *ngFor="let company of listCompanies">
+            <app-list-brands
+              [user]="user"
+              [company]="company"
+              (edit)="getEditBrand($event)"
+              (add)="showNewBrand()">
+            </app-list-brands>
+          </ng-container>
+        </ng-container>
+
+        <!-- EDIT BRANDS -->
+        <ng-container *ngIf="pageEditBrand === true">
+          <ng-container *ngFor="let company of listCompanies">
+            <app-edit-brand
+              [user]="user"
+              [company]="company"
+              [editBrand]="editBrand"
+              (cancel)="showListBrands()">
+            </app-edit-brand>
+          </ng-container>
+        </ng-container>
+
+        <!-- NEW BRAND -->
+        <ng-container *ngIf="pageNewBrand === true">
+          <ng-container *ngFor="let company of listCompanies">
+            <app-new-brand
+              [user]="user"
+              [company]="company"
+              (cancel)="showListBrands()">
+            </app-new-brand>
+          </ng-container>
+        </ng-container>
+
+      </ng-template>
+    </li>
+  </ul>
+
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+</ng-container>

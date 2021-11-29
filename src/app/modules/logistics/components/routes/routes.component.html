@@ -1,1 +1,123 @@
-<p>routes works!</p>
+<ng-container *ngIf="authSvc.user$ | async as user">
+  <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+
+    <!------------- ROUTES ------------->
+    <li [ngbNavItem]="1">
+      <a ngbNavLink>RUTAS</a>
+      <ng-template ngbNavContent>
+
+        <!-- LIST ROUTES -->
+        <ng-container *ngIf="pageListRoutes === true">
+          <ng-container *ngFor="let company of listCompanies">
+            <app-list-routes
+              [user]="user"
+              [company]="company"
+              (edit)="getEditRoute($event)"
+              (add)="showNewRoute()">
+            </app-list-routes>
+          </ng-container>
+        </ng-container>
+
+        <!-- NEW ROUTE -->
+        <ng-container *ngIf="pageNewRoute === true">
+          <ng-container *ngFor="let company of listCompanies">
+            <app-new-route
+              [user]="user"
+              [company]="company"
+              (cancel)="showListRoutes()">
+            </app-new-route>
+          </ng-container>
+        </ng-container>
+
+        <!-- EDIT ROUTE -->
+        <ng-container *ngIf="pageEditRoute === true">
+          <ng-container *ngFor="let company of listCompanies">
+            <app-edit-route
+              [user]="user"
+              [company]="company"
+              [editRoute]="editRoute"
+              (cancel)="showListRoutes()">
+            </app-edit-route>
+          </ng-container>
+        </ng-container>
+
+      </ng-template>
+    </li>
+
+    <!------------- TRIPS -------------->
+    <li [ngbNavItem]="2">
+      <a ngbNavLink>VIAJES</a>
+      <ng-template ngbNavContent>
+
+        <!-- LIST TRIPS -->
+        <ng-container *ngIf="pageListTrips === true">
+          <ng-container *ngFor="let company of listCompanies">
+            <app-list-trips
+              [user]="user"
+              [company]="company">
+            </app-list-trips>
+          </ng-container>
+        </ng-container>
+
+        <!-- EDIT TRIP -->
+        <ng-container *ngIf="pageEditTrip === true">
+          <ng-container *ngFor="let company of listCompanies">
+          </ng-container>
+        </ng-container>
+
+        <!-- NEW TRIP -->
+        <ng-container *ngIf="pageNewTrip === true">
+          <ng-container *ngFor="let company of listCompanies">
+          </ng-container>
+        </ng-container>
+
+      </ng-template>
+    </li>
+
+    <!------------- CITIES -------------->
+    <li [ngbNavItem]="3">
+      <a ngbNavLink>CIUDADES</a>
+      <ng-template ngbNavContent>
+
+        <!-- LIST CITIES -->
+        <ng-container *ngIf="pageListCities === true">
+          <ng-container *ngFor="let company of listCompanies">
+            <app-list-cities
+              [user]="user"
+              [company]="company"
+              (edit)="getEditCity($event)"
+              (add)="showNewCity()">
+            </app-list-cities>
+          </ng-container>
+        </ng-container>
+
+        <!-- EDIT CITY -->
+        <ng-container *ngIf="pageEditCity === true">
+          <ng-container *ngFor="let company of listCompanies">
+            <app-edit-city
+              [user]="user"
+              [company]="company"
+              [editCity]="editCity"
+              (cancel)="showListCities()">
+            </app-edit-city>
+          </ng-container>
+        </ng-container>
+
+        <!-- NEW CITY -->
+        <ng-container *ngIf="pageNewCity === true">
+          <ng-container *ngFor="let company of listCompanies">
+            <app-new-city
+              [user]="user"
+              [company]="company"
+              (cancel)="showListCities()">
+            </app-new-city>
+          </ng-container>
+        </ng-container>
+
+      </ng-template>
+    </li>
+  </ul>
+
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+</ng-container>

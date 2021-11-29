@@ -1,1 +1,87 @@
-<p>indicators-by-vehicle works!</p>
+<div class="card">
+  <div class="card-header d-flex justify-content-between">
+    <div class="title">
+    </div>
+    <div class="toolbar">
+      <app-toolbar
+      ></app-toolbar>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <div class="row">
+      <!--      <div class="col-lg-4">-->
+      <!--        <div class="table-responsive">-->
+      <!--          <table class="table table-hover table-bordered" id="exportExcel">-->
+      <!--            <thead>-->
+      <!--            <tr>-->
+      <!--              <th colspan="2" class="text-center">UNIDADES DE TRANSPORTE</th>-->
+      <!--            </tr>-->
+      <!--            <tr class="text-nowrap">-->
+      <!--              <th class="text-center">PLACA</th>-->
+      <!--              <th class="text-center">VEHÍCULO</th>-->
+      <!--            </tr>-->
+      <!--            </thead>-->
+      <!--            <tbody>-->
+      <!--            <tr class="text-nowrap" *ngFor="let vehicle of listVehicle">-->
+      <!--              <td (click)="getVehicle(vehicle)">{{vehicle.badge}}</td>-->
+      <!--              <td (click)="getVehicle(vehicle)">{{vehicle.description}}</td>-->
+      <!--            </tr>-->
+      <!--            </tbody>-->
+      <!--          </table>-->
+      <!--        </div>-->
+      <!--      </div>-->
+
+      <div class="col-lg-12">
+        <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+
+          <!------------- DAILY ------------->
+          <li [ngbNavItem]="1">
+            <a ngbNavLink>DIARIO</a>
+            <ng-template ngbNavContent>
+              <app-indicators-by-vehicle-daily
+                [user]="user"
+                [company]="company">
+              </app-indicators-by-vehicle-daily>
+            </ng-template>
+          </li>
+
+          <!------------- WEEKLY ------------->
+          <li [ngbNavItem]="2">
+            <a ngbNavLink>SEMANAL</a>
+            <ng-template ngbNavContent>
+              <app-indicators-by-vehicle-weekly>
+
+              </app-indicators-by-vehicle-weekly>
+            </ng-template>
+          </li>
+
+          <!------------- MONTHLY ------------->
+          <li [ngbNavItem]="3">
+            <a ngbNavLink>MENSUAL</a>
+            <ng-template ngbNavContent>
+              <app-indicators-by-vehicle-monthly
+                [user]="user"
+                [company]="company">
+              </app-indicators-by-vehicle-monthly>
+            </ng-template>
+          </li>
+
+          <!------------- YEARLY ------------->
+          <li [ngbNavItem]="4">
+            <a ngbNavLink>ANUAL</a>
+            <ng-template ngbNavContent>
+              <app-indicators-by-vehicle-yearly
+                [user]="user"
+                [company]="company">
+              </app-indicators-by-vehicle-yearly>
+            </ng-template>
+          </li>
+
+        </ul>
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+      </div>
+
+    </div>
+  </div>
+</div>

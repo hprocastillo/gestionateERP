@@ -2,13 +2,13 @@
 <br>
 
 <div class="row">
-  <div class="col-lg-7">
+  <div class="col-lg-12">
     <form [formGroup]="newForm" (ngSubmit)="onSave(user)">
 
       <!-- Company Types -->
       <div class="form-group row">
-        <label for="txtCompanyTypes" class="col-md-5 col-form-label">Rubro Empresarial:</label>
-        <div class="col-md-7">
+        <label for="txtCompanyTypes" class="col-lg-6 col-form-label">Rubro Empresarial:</label>
+        <div class="col-lg-6">
           <select class="form-control" id="txtCompanyTypes" formControlName="companyTypeId">
             <option value="" selected>Seleccionar</option>
             <option *ngFor="let ct of listCompaniesTypes" value="{{ct.id}}">{{ct.description}}</option>
@@ -18,59 +18,56 @@
 
       <!-- Name -->
       <div class="form-group row">
-        <label for="txtName" class="col-md-5 col-form-label">Nombre de tu empresa:</label>
-        <div class="col-md-7">
-          <input type="text" class="form-control" id="txtName" formControlName="name">
+        <label for="txtName" class="col-lg-6 col-form-label">Nombre de tu empresa:</label>
+        <div class="col-lg-6">
+          <input type="text" class="form-control" id="txtName" formControlName="name" required>
         </div>
       </div>
 
       <!-- Email -->
       <div class="form-group row">
-        <label for="txtEmail" class="col-md-5 col-form-label">Correo electrónico:</label>
-        <div class="col-md-7">
+        <label for="txtEmail" class="col-lg-6 col-form-label">Correo electrónico:</label>
+        <div class="col-lg-6">
           <input type="email" class="form-control" id="txtEmail" formControlName="email">
         </div>
       </div>
 
       <!-- Ruc -->
       <div class="form-group row">
-        <label for="txtRuc" class="col-md-5 col-form-label">RUC:</label>
-        <div class="col-md-7">
+        <label for="txtRuc" class="col-lg-6 col-form-label">RUC:</label>
+        <div class="col-lg-6">
           <input type="number" class="form-control" id="txtRuc" formControlName="ruc">
         </div>
       </div>
 
       <!-- Phone -->
       <div class="form-group row">
-        <label for="txtPhone" class="col-md-5 col-form-label">Teléfono:</label>
-        <div class="col-md-7">
+        <label for="txtPhone" class="col-lg-6 col-form-label">Teléfono:</label>
+        <div class="col-lg-6">
           <input type="tel" class="form-control" id="txtPhone" formControlName="phone">
         </div>
       </div>
 
       <!-- Address -->
       <div class="form-group row">
-        <label for="txtAddress" class="col-md-5 col-form-label">Dirección:</label>
-        <div class="col-md-7">
+        <label for="txtAddress" class="col-lg-6 col-form-label">Dirección:</label>
+        <div class="col-lg-6">
           <input type="text" class="form-control" id="txtAddress" formControlName="address">
         </div>
       </div>
 
       <!-- Website -->
       <div class="form-group row">
-        <label for="txtWebsite" class="col-md-5 col-form-label">Página Web:</label>
-        <div class="col-md-7">
+        <label for="txtWebsite" class="col-lg-6 col-form-label">Página Web:</label>
+        <div class="col-lg-6">
           <input type="text" class="form-control" id="txtWebsite" formControlName="webUrl">
         </div>
       </div>
       <br>
 
       <div class="form-group row">
-        <div class="col-md-4">
-          <button class="btn btn-danger btn-block">Cancelar</button>
-        </div>
-        <div class="col-md-4">
-          <button class="btn btn-primary btn-block">Guardar</button>
+        <div class="col-lg-12">
+          <button type="submit" class="btn btn-primary btn-block">Guardar</button>
         </div>
       </div>
 
